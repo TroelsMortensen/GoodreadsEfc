@@ -4,9 +4,9 @@ public class Profile
 {
     public string ProfileName { get; set; } = null!;
 
-    public string? FirstName { get; set; }
+    public string FirstName { get; set; }
 
-    public string? LastName { get; set; }
+    public string LastName { get; set; }
 
     public ICollection<BooksCurrentlyBeingRead> BooksCurrentlyBeingReads { get; set; } = new List<BooksCurrentlyBeingRead>();
 
