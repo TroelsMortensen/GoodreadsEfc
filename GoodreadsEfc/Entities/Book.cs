@@ -14,7 +14,7 @@ public class Book
 
     public int? BindingId { get; set; }
 
-    public int? WrittenById { get; set; }
+    public int WrittenById { get; set; }
 
     public int? PublishedById { get; set; }
 
@@ -28,7 +28,7 @@ public class Book
 
     public Publisher? PublishedBy { get; set; }
 
-    public Author? WrittenBy { get; set; }
+    public Author WrittenBy { get; set; }
 
     public ICollection<Author> CoAuthors { get; set; } = new List<Author>();
 
