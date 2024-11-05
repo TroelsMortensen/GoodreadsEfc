@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GoodreadsEfc;
 
-public partial class GoodreadsContext : DbContext
+public class GoodreadsContext : DbContext
 {
     public GoodreadsContext()
     {
@@ -16,32 +16,31 @@ public partial class GoodreadsContext : DbContext
     {
     }
 
-    public virtual DbSet<Address> Addresses { get; set; }
+    public DbSet<Address> Addresses { get; set; }
 
-    public virtual DbSet<Announcement> Announcements { get; set; }
+    public DbSet<Announcement> Announcements { get; set; }
 
-    public virtual DbSet<Author> Authors { get; set; }
+    public DbSet<Author> Authors { get; set; }
 
-    public virtual DbSet<Binding> Bindings { get; set; }
+    public DbSet<Binding> Bindings { get; set; }
 
-    public virtual DbSet<Book> Books { get; set; }
+    public DbSet<Book> Books { get; set; }
 
-    public virtual DbSet<BooksCurrentlyBeingRead> BooksCurrentlyBeingReads { get; set; }
+    public DbSet<BooksCurrentlyBeingRead> BooksCurrentlyBeingReads { get; set; }
 
-    public virtual DbSet<BooksRead> BooksReads { get; set; }
+    public DbSet<BooksRead> BooksReads { get; set; }
 
-    public virtual DbSet<BooksWantedToBeRead> BooksWantedToBeReads { get; set; }
+    public DbSet<BooksWantedToBeRead> BooksWantedToBeReads { get; set; }
 
-    public virtual DbSet<City> Cities { get; set; }
+    public DbSet<City> Cities { get; set; }
 
-    public virtual DbSet<Genre> Genres { get; set; }
+    public DbSet<Genre> Genres { get; set; }
 
-    public virtual DbSet<Profile> Profiles { get; set; }
+    public DbSet<Profile> Profiles { get; set; }
 
-    public virtual DbSet<Publisher> Publishers { get; set; }
+    public DbSet<Publisher> Publishers { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlite("Data Source = C:\\TRMO\\RiderProjects\\GoodreadsEfc\\GoodreadsEfc\\Goodreads.db");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -154,18 +153,8 @@ public partial class GoodreadsContext : DbContext
             entity.HasOne(d => d.ProfileNameNavigation).WithMany(p => p.BooksWantedToBeReads).HasForeignKey(d => d.ProfileName);
         });
 
-        modelBuilder.Entity<City>(entity =>
-        {
-            entity.HasKey(e => new { e.Name, e.PostCode });
-        });
+        modelBuilder.Entity<City>(entity => { entity.HasKey(e => new { e.Name, e.PostCode }); });
 
-        modelBuilder.Entity<Profile>(entity =>
-        {
-            entity.HasKey(e => e.ProfileName);
-        });
-
-        OnModelCreatingPartial(modelBuilder);
+        modelBuilder.Entity<Profile>(entity => { entity.HasKey(e => e.ProfileName); });
     }
-
-    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
