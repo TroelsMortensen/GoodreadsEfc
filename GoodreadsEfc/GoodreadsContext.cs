@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using GoodreadsEfc.Entities;
+﻿using GoodreadsEfc.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace GoodreadsEfc;
